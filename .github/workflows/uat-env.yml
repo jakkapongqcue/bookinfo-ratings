@@ -1,8 +1,8 @@
-name: dev-env
+name: uat-env
 on:
   push:
     branches:
-      - dev
+      - uat
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -19,7 +19,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/jakkapongqcue/bookinfo-ratings:dev
+          tags: ghcr.io/jakkapongqcue/bookinfo-ratings:uat
   deploy:
     needs: build
     runs-on: ubuntu-20.04
@@ -36,10 +36,10 @@ jobs:
         uses: deliverybot/helm@v1
         with:
           helm: helm3
-          release: bookinfo-dev-ratings
-          namespace: student14-bookinfo-dev
+          release: bookinfo-uat-ratings
+          namespace: student14-bookinfo-uat
           chart: k8s/helm
-          value-files: k8s/helm-values/values-bookinfo-dev-ratings.yaml
+          value-files: k8s/helm-values/values-bookinfo-uat-ratings.yaml
           values: |
             {
               "extraEnv": {

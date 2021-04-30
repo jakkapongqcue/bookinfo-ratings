@@ -18,8 +18,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          push: atrue
-          tags: ghcr.io/jakkapongqcue/bookinfo_ratings:dev
+          push: true
+          tags: ghcr.io/jakkapongqcue/bookinfo-ratings:dev
   deploy:
     needs: build
     runs-on: ubuntu-20.04
